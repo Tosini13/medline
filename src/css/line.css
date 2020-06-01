@@ -24,6 +24,7 @@
 }
 
 .lineContainer .event .dot {
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -39,9 +40,80 @@
   width: 40px;
   border-radius: 50%;
   background-color: white;
+  -webkit-transition: background-color 0.5s, color 0.5s, -webkit-box-shadow 0.3s;
+  transition: background-color 0.5s, color 0.5s, -webkit-box-shadow 0.3s;
+  transition: box-shadow 0.3s, background-color 0.5s, color 0.5s;
+  transition: box-shadow 0.3s, background-color 0.5s, color 0.5s, -webkit-box-shadow 0.3s;
 }
 
-.lineContainer .event .dot > i {
+.lineContainer .event .dot:hover {
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
+}
+
+.lineContainer .event .content {
+  padding: 0px 10px;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.7);
+  -webkit-transform: translate(15px, 8px);
+          transform: translate(15px, 8px);
+  max-width: calc(100% - 55px);
+  -webkit-transition-property: padding-bottom;
+  transition-property: padding-bottom;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.lineContainer .event .content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  -webkit-transform: translateX(-90%);
+          transform: translateX(-90%);
+  border: transparent solid 10px;
+  border-right: white solid 10px;
+}
+
+.lineContainer .event .content .title {
+  font-weight: 700;
+  text-align: left;
+  font-size: 25px;
+  color: grey;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.lineContainer .event .content .description {
+  color: black;
+  text-align: justify;
+  font-size: 0px;
+  max-height: 0px;
+  -webkit-transition-property: font-size, max-height;
+  transition-property: font-size, max-height;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.lineContainer .event .content.opened {
+  padding-bottom: 10px;
+}
+
+.lineContainer .event .content.opened .description {
+  font-size: 15px;
+  max-height: 100%;
+}
+
+.lineContainer .event.event-create .dot {
+  font-size: 40px;
+  color: white;
+  background-color: #019785;
+  font-weight: 800;
+}
+
+.lineContainer .event.event-create .dot > i {
   height: 100%;
   width: 100%;
   display: -webkit-box;
@@ -53,52 +125,41 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-bottom: 5px;
-}
-
-.lineContainer .event .content {
-  padding: 10px;
-  background-color: white;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.7);
-          box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.7);
-  -webkit-transform: translate(15px, 8px);
-          transform: translate(15px, 8px);
-  max-width: 80%;
-}
-
-.lineContainer .event .content::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 2px;
-  -webkit-transform: translateX(-90%);
-          transform: translateX(-90%);
-  border: transparent solid 10px;
-  border-right: white solid 10px;
-}
-
-.lineContainer .event .content .title {
-  font-weight: 700;
-}
-
-.lineContainer .event .content .description {
-  color: grey;
-}
-
-.lineContainer .event.event-create .dot {
-  cursor: pointer;
+  padding-bottom: 9px;
 }
 
 .lineContainer .event.event-create .content {
   display: block;
 }
 
+.lineContainer .event.event-create .content textarea {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  border: rgba(0, 0, 0, 0.3) solid 1.5px;
+  -webkit-transition: border 0.3s;
+  transition: border 0.3s;
+  width: 100%;
+  resize: vertical;
+}
+
+.lineContainer .event.event-create .content textarea:active, .lineContainer .event.event-create .content textarea:focus {
+  border: #019785 solid 1.5px;
+  outline: none;
+}
+
+.lineContainer .event.event-create .content select {
+  display: block;
+}
+
+.lineContainer .event.event-create .content select:active, .lineContainer .event.event-create .content select:focus {
+  border: #019785 solid 1.5px;
+  outline: none;
+}
+
 .lineContainer .event.event-create.event-disabled .dot {
-  cursor: pointer;
-  font-size: 30px;
+  background-color: white;
   color: #019785;
-  font-weight: 800;
 }
 
 .lineContainer .event.event-create.event-disabled .content {
