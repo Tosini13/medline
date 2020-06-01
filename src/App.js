@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './App.css';
 import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Line from './components/Line';
 
 class App extends Component {
   render() {
@@ -9,7 +11,10 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar />
-          Line
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/:line_id' component={Line} />
+          </Switch>
         </div>
       </BrowserRouter>
     );

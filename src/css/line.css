@@ -1,0 +1,107 @@
+.lineContainer {
+  position: relative;
+  margin: 10px;
+}
+
+.lineContainer h1 {
+  color: blue;
+}
+
+.lineContainer .line {
+  z-index: -1;
+  left: 18px;
+  top: 1px;
+  position: absolute;
+  height: 98%;
+  border-right: #052093 dashed 6px;
+}
+
+.lineContainer .event {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px 0px;
+}
+
+.lineContainer .event .dot {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.7);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.lineContainer .event .dot > i {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 5px;
+}
+
+.lineContainer .event .content {
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.7);
+  -webkit-transform: translate(15px, 8px);
+          transform: translate(15px, 8px);
+  max-width: 80%;
+}
+
+.lineContainer .event .content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  -webkit-transform: translateX(-90%);
+          transform: translateX(-90%);
+  border: transparent solid 10px;
+  border-right: white solid 10px;
+}
+
+.lineContainer .event .content .title {
+  font-weight: 700;
+}
+
+.lineContainer .event .content .description {
+  color: grey;
+}
+
+.lineContainer .event.event-create .dot {
+  cursor: pointer;
+}
+
+.lineContainer .event.event-create .content {
+  display: block;
+}
+
+.lineContainer .event.event-create.event-disabled .dot {
+  cursor: pointer;
+  font-size: 30px;
+  color: #019785;
+  font-weight: 800;
+}
+
+.lineContainer .event.event-create.event-disabled .content {
+  display: none;
+}
+/*# sourceMappingURL=line.css.map */
