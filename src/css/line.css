@@ -107,29 +107,42 @@
 }
 
 .lineContainer .event.event-create .dot {
+  background-color: white;
+  color: #019785;
   font-size: 40px;
-  color: white;
-  background-color: #019785;
   font-weight: 800;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.lineContainer .event.event-create .dot > i {
-  height: 100%;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-bottom: 9px;
+.lineContainer .event.event-create .dot.dot-create > div {
+  background-color: #019785;
+  height: 5px;
+  width: 20px;
+  -webkit-transition: width 0.3s, -webkit-transform 0.3s;
+  transition: width 0.3s, -webkit-transform 0.3s;
+  transition: transform 0.3s, width 0.3s;
+  transition: transform 0.3s, width 0.3s, -webkit-transform 0.3s;
+}
+
+.lineContainer .event.event-create .dot.dot-create > div:first-child {
+  -webkit-transform: translate(-60%, 2.5px) rotateZ(45deg);
+          transform: translate(-60%, 2.5px) rotateZ(45deg);
+  width: 10px;
+}
+
+.lineContainer .event.event-create .dot.dot-create > div:last-child {
+  -webkit-transform: translate(20%, -2.5px) rotateZ(-45deg);
+          transform: translate(20%, -2.5px) rotateZ(-45deg);
 }
 
 .lineContainer .event.event-create .content {
-  display: block;
+  max-height: 100%;
+  -webkit-transition: max-height 0.3s;
+  transition: max-height 0.3s;
+  overflow: hidden;
 }
 
 .lineContainer .event.event-create .content textarea {
@@ -157,12 +170,24 @@
   outline: none;
 }
 
-.lineContainer .event.event-create.event-disabled .dot {
-  background-color: white;
-  color: #019785;
+.lineContainer .event.event-create.event-disabled .dot.dot-create > div {
+  background-color: #019785;
+  height: 5px;
+  width: 20px;
+}
+
+.lineContainer .event.event-create.event-disabled .dot.dot-create > div:first-child {
+  -webkit-transform: translate(0%, 2.5px) rotateZ(0deg);
+          transform: translate(0%, 2.5px) rotateZ(0deg);
+}
+
+.lineContainer .event.event-create.event-disabled .dot.dot-create > div:last-child {
+  -webkit-transform: translate(0%, -2.5px) rotateZ(-90deg);
+          transform: translate(0%, -2.5px) rotateZ(-90deg);
 }
 
 .lineContainer .event.event-create.event-disabled .content {
   display: none;
+  max-height: 0px;
 }
 /*# sourceMappingURL=line.css.map */

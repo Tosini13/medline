@@ -47,8 +47,9 @@ class CreateLineEvent extends Component {
         }
         return (
             <div className={eventClass}>
-                <div className='dot' onClick={this.state.handle}>
-                    <i>+</i>
+                <div className='dot dot-create' onClick={this.state.handle}>
+                    <div></div>
+                    <div></div>
                 </div>
                 <form className='content'>
                     <select id='type' onChange={this.handleChange}>

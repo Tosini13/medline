@@ -1,4 +1,5 @@
 @import "_constants.scss";
+$width: 40px;
 
 .lineContainer {
     position: relative;
@@ -23,8 +24,8 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.7);
-            height: 40px;
-            width: 40px;
+            height: $width;
+            width: $width;
             border-radius: 50%;
             background-color: white;
             transition: box-shadow 0.3s, background-color 0.5s, color 0.5s;
@@ -75,22 +76,36 @@
             }
         }
         &.event-create {
+            //CREATE DOT & X
+
             .dot {
+                background-color: white;
+                color: $medicalGreen;
                 font-size: 40px;
-                color: white;
-                background-color: $medicalGreen;
                 font-weight: 800;
-                > i {
-                    height: 100%;
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding-bottom: 9px;
+                flex-direction: column;
+                &.dot-create {
+                    > div {
+                        background-color: $medicalGreen;
+                        $height: 5px;
+                        height: $height;
+                        width: $width/2;
+                        transition: transform 0.3s, width 0.3s;
+                        &:first-child {
+                            transform: translate(-60%, 2.5px) rotateZ(45deg);
+                            width: 10px;
+                        }
+                        &:last-child {
+                            transform: translate(20%, -2.5px) rotateZ(-45deg);
+                        }
+                    }
                 }
             }
             .content {
-                display: block;
+                max-height: 100%;
+                transition: max-height 0.3s;
+                overflow: hidden;
+                // display: block;
                 textarea {
                     border: none;
                     padding: 5px;
@@ -117,11 +132,24 @@
             }
             &.event-disabled {
                 .dot {
-                    background-color: white;
-                    color: $medicalGreen;
+                    &.dot-create {
+                        > div {
+                            background-color: $medicalGreen;
+                            $height: 5px;
+                            height: $height;
+                            width: $width/2;
+                            &:first-child {
+                                transform: translate(0%, #{$height / 2}) rotateZ(0deg);
+                            }
+                            &:last-child {
+                                transform: translate(0%, -#{$height / 2}) rotateZ(-90deg);
+                            }
+                        }
+                    }
                 }
                 .content {
                     display: none;
+                    max-height: 0px;
                 }
             }
         }
