@@ -20,7 +20,7 @@ class LineEvent extends Component {
                     <i>{this.props.event.type}</i>
                 </div>
                 <div className={contentClass}>
-                    <div className='title' onClick={this.handleClick}>{this.props.event.title}</div>
+                    <div className='title' style={{ color: this.props.mainColor }} onClick={this.handleClick}>{this.props.event.title}</div>
                     <div className='description'>{this.props.event.description}</div>
                 </div>
             </div>

@@ -6,9 +6,10 @@ class Navbar extends Component {
         return (
             <nav className='nav-wrapper grey darken-3'>
                 <div className='container'>
-                    <a href='./' className='brand-logo center'>MedLine</a>
+                    {/* <a href='./' className='brand-logo center'>MedLine</a> */}
                     <ul className='right'>
-                        <li> <NavLink to={'/Line'}>My Line</NavLink></li>
+                        <li> <NavLink to={'/Line'}>My Whole Line</NavLink></li>
+                        <li> <NavLink to={'/Create'}>Create Line</NavLink></li>
                         <li> <NavLink to={'/LogOut'}>Log out</NavLink></li>
                     </ul>
                 </div>

@@ -1,29 +1,34 @@
-.lineContainer {
+.lineContainer .lineTitle {
+  font-size: 40px;
+  font-weight: 800;
+  margin: 5px 0px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.lineContainer > div {
   position: relative;
   margin: 10px;
 }
 
-.lineContainer h1 {
-  color: blue;
-}
-
-.lineContainer .line {
+.lineContainer > div .line {
   z-index: -1;
   left: 18px;
   top: 1px;
   position: absolute;
   height: 98%;
   border-right: #052093 dashed 6px;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-.lineContainer .event {
+.lineContainer > div .event {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin: 20px 0px;
 }
 
-.lineContainer .event .dot {
+.lineContainer > div .event .dot {
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -46,12 +51,12 @@
   transition: box-shadow 0.3s, background-color 0.5s, color 0.5s, -webkit-box-shadow 0.3s;
 }
 
-.lineContainer .event .dot:hover {
+.lineContainer > div .event .dot:hover {
   -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
           box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
 }
 
-.lineContainer .event .content {
+.lineContainer > div .event .content {
   padding: 0px 10px;
   background-color: white;
   border-radius: 5px;
@@ -66,7 +71,7 @@
           transition-duration: 0.3s;
 }
 
-.lineContainer .event .content::before {
+.lineContainer > div .event .content::before {
   content: "";
   position: absolute;
   left: 0;
@@ -77,16 +82,17 @@
   border-right: white solid 10px;
 }
 
-.lineContainer .event .content .title {
+.lineContainer > div .event .content .title {
   font-weight: 700;
   text-align: left;
   font-size: 25px;
   color: grey;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
   cursor: pointer;
+  text-align: center;
 }
 
-.lineContainer .event .content .description {
+.lineContainer > div .event .content .description {
   color: black;
   text-align: justify;
   font-size: 0px;
@@ -97,16 +103,16 @@
           transition-duration: 0.3s;
 }
 
-.lineContainer .event .content.opened {
+.lineContainer > div .event .content.opened {
   padding-bottom: 10px;
 }
 
-.lineContainer .event .content.opened .description {
+.lineContainer > div .event .content.opened .description {
   font-size: 15px;
   max-height: 100%;
 }
 
-.lineContainer .event.event-create .dot {
+.lineContainer > div .event.event-create .dot {
   background-color: white;
   color: #019785;
   font-size: 40px;
@@ -117,7 +123,7 @@
           flex-direction: column;
 }
 
-.lineContainer .event.event-create .dot.dot-create > div {
+.lineContainer > div .event.event-create .dot.dot-create > div {
   background-color: #019785;
   height: 5px;
   width: 20px;
@@ -127,25 +133,24 @@
   transition: transform 0.3s, width 0.3s, -webkit-transform 0.3s;
 }
 
-.lineContainer .event.event-create .dot.dot-create > div:first-child {
+.lineContainer > div .event.event-create .dot.dot-create > div:first-child {
   -webkit-transform: translate(-60%, 2.5px) rotateZ(45deg);
           transform: translate(-60%, 2.5px) rotateZ(45deg);
   width: 10px;
 }
 
-.lineContainer .event.event-create .dot.dot-create > div:last-child {
+.lineContainer > div .event.event-create .dot.dot-create > div:last-child {
   -webkit-transform: translate(20%, -2.5px) rotateZ(-45deg);
           transform: translate(20%, -2.5px) rotateZ(-45deg);
 }
 
-.lineContainer .event.event-create .content {
+.lineContainer > div .event.event-create .content {
   max-height: 100%;
   -webkit-transition: max-height 0.3s;
   transition: max-height 0.3s;
-  overflow: hidden;
 }
 
-.lineContainer .event.event-create .content textarea {
+.lineContainer > div .event.event-create .content textarea {
   border: none;
   padding: 5px;
   border-radius: 5px;
@@ -156,37 +161,37 @@
   resize: vertical;
 }
 
-.lineContainer .event.event-create .content textarea:active, .lineContainer .event.event-create .content textarea:focus {
+.lineContainer > div .event.event-create .content textarea:active, .lineContainer > div .event.event-create .content textarea:focus {
   border: #019785 solid 1.5px;
   outline: none;
 }
 
-.lineContainer .event.event-create .content select {
+.lineContainer > div .event.event-create .content select {
   display: block;
 }
 
-.lineContainer .event.event-create .content select:active, .lineContainer .event.event-create .content select:focus {
+.lineContainer > div .event.event-create .content select:active, .lineContainer > div .event.event-create .content select:focus {
   border: #019785 solid 1.5px;
   outline: none;
 }
 
-.lineContainer .event.event-create.event-disabled .dot.dot-create > div {
+.lineContainer > div .event.event-create.event-disabled .dot.dot-create > div {
   background-color: #019785;
   height: 5px;
   width: 20px;
 }
 
-.lineContainer .event.event-create.event-disabled .dot.dot-create > div:first-child {
+.lineContainer > div .event.event-create.event-disabled .dot.dot-create > div:first-child {
   -webkit-transform: translate(0%, 2.5px) rotateZ(0deg);
           transform: translate(0%, 2.5px) rotateZ(0deg);
 }
 
-.lineContainer .event.event-create.event-disabled .dot.dot-create > div:last-child {
+.lineContainer > div .event.event-create.event-disabled .dot.dot-create > div:last-child {
   -webkit-transform: translate(0%, -2.5px) rotateZ(-90deg);
           transform: translate(0%, -2.5px) rotateZ(-90deg);
 }
 
-.lineContainer .event.event-create.event-disabled .content {
+.lineContainer > div .event.event-create.event-disabled .content {
   display: none;
   max-height: 0px;
 }
