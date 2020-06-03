@@ -1,16 +1,17 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addEvent } from '../../store/actions/lineActions'
 
 class CreateLineEvent extends Component {
 
     addEvent = () => {
-        console.log('add event');
         let event = {
             id: this.state.id,
             type: this.state.type,
             title: this.state.title,
             description: this.state.description
         };
-        this.props.addEvent(event);
+        this.props.addEvent(this.props.id, event);
         this.setState({
             state: 0,
             handle: this.createEvent,
@@ -30,7 +31,7 @@ class CreateLineEvent extends Component {
             [e.target.id]: e.target.value
         })
     }
-    
+
     state = {
         state: 0,
         handle: this.createEvent,
@@ -66,4 +67,10 @@ class CreateLineEvent extends Component {
     }
 }
 
-export default CreateLineEvent;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addEvent: (id, event) => { dispatch(addEvent(id, event)) }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreateLineEvent);

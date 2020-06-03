@@ -8,9 +8,10 @@ class Navbar extends Component {
                 <div className='container'>
                     {/* <a href='./' className='brand-logo center'>MedLine</a> */}
                     <ul className='right'>
-                        <li> <NavLink to={'/Line'}>My Whole Line</NavLink></li>
+                        <li> <NavLink exact to={'/'}>Home</NavLink></li>
+                        {/* <li> <NavLink to={'/Line'}>My Whole Line</NavLink></li> */}
                         <li> <NavLink to={'/Create'}>Create Line</NavLink></li>
-                        <li> <NavLink to={'/LogOut'}>Log out</NavLink></li>
+                        {/* <li> <NavLink to={'/LogOut'}>Log out</NavLink></li> */}
                     </ul>
                 </div>
             </nav>

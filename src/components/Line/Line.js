@@ -2,59 +2,38 @@ import React, { Component } from "react";
 import '../../css/line.css';
 import LineEvent from './LineEvent.js';
 import CreateLineEvent from './CreateLineEvent.js';
+import { connect } from "react-redux";
 
 class Line extends Component {
 
-
-    addEvent = (event) => {
-        let events = [...this.state.events, event];
-        console.log(events);
-        this.setState({
-            events: events
-        });
-    }
-
-    state = {
-        title: 'Right knee',
-        color: '#6e0303',
-        events: [
-            {
-                id: 0,
-                type: 'O', //Occurance
-                title: 'Ligaments breaking',
-                description: 'Breaking ligaments while playing football'
-            },
-            {
-                id: 1,
-                type: 'MT', //Medical Test
-                title: 'Resonance of right knee',
-                description: 'Right knee was tested after breaking the anterior cruciate ligaments. Right knee was tested after breaking the anterior cruciate ligaments. Right knee was tested after breaking the anterior cruciate ligaments.'
-            }
-        ]
-    }
-
     render() {
         const style = {
-            borderColor: this.state.color,
+            borderColor: this.props.line.color,
         }
-        let events = this.state.events.map((event) => {
+        let events = this.props.line.events.map((event) => {
             return (
-                <LineEvent key={event.id} event={event} mainColor={this.state.color} />
+                <LineEvent key={event.id} event={event} mainColor={this.props.line.color} />
             )
         });
-        console.log(this.state.events.length);
         return (
             <div className='lineContainer'>
-                <h3 className='lineTitle' style={{ color: this.state.color }}>{this.state.title}</h3>
+                <h3 className='lineTitle' style={{ color: this.props.line.color }}>{this.props.line.title}</h3>
                 <div>
                     <div className='line' style={style}>
                     </div>
                     {events}
-                    <CreateLineEvent iter={this.state.events.length} addEvent={this.addEvent} mainColor={this.state.color} />
+                    <CreateLineEvent iter={this.props.line.events.length} id={this.props.line.id} mainColor={this.props.line.color} />
                 </div>
             </div>
         )
     }
 }
 
-export default Line;
+const mapStateToProps = (state, ownProps) => {
+    let id = ownProps.match.params.line_id;
+    return {
+        line: state.lines.find(line => parseInt(id) === line.id)
+    }
+}
+
+export default connect(mapStateToProps)(Line);
