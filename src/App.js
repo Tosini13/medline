@@ -5,6 +5,8 @@ import Navbar from './components/Layout/Navbar';
 import Home from './components/Home';
 import Line from './components/Line/Line';
 import CreateLine from './components/Line/CreateLine';
+import SignIn from './components/Auth/SignIn';
+import SignUp from './components/Auth/SignUp';
 
 
 class App extends Component {
@@ -15,8 +17,10 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/Create' component={CreateLine} />
-            <Route path='/:line_id' component={Line} />
+            <Route path='/create' component={CreateLine} />
+            <Route path='/signin' component={SignIn} />
+            <Route path='/signup' component={SignUp} />
+            <Route path='/line/:line_id' component={Line} />
           </Switch>
         </div>
       </BrowserRouter>

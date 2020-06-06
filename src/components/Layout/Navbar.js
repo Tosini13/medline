@@ -1,22 +1,24 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import LoggedInLinks from "./LoggedInLinks";
+import LoggedOutLinks from "./LoggedOutLinks";
+import { connect } from "react-redux";
 
 class Navbar extends Component {
     render() {
         return (
             <nav className='nav-wrapper grey darken-3'>
                 <div className='container'>
-                    {/* <a href='./' className='brand-logo center'>MedLine</a> */}
-                    <ul className='right'>
-                        <li> <NavLink exact to={'/'}>Home</NavLink></li>
-                        {/* <li> <NavLink to={'/Line'}>My Whole Line</NavLink></li> */}
-                        <li> <NavLink to={'/Create'}>Create Line</NavLink></li>
-                        {/* <li> <NavLink to={'/LogOut'}>Log out</NavLink></li> */}
-                    </ul>
+                    {this.props.loggedIn ? <LoggedInLinks /> : <LoggedOutLinks />}
                 </div>
             </nav>
         )
     }
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: state.firebase.auth.uid ? true : false
+    }
+}
+
+export default connect(mapStateToProps)(Navbar);

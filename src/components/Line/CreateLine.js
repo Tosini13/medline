@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addLine } from '../../store/actions/lineActions'
+import { Redirect } from "react-router-dom";
 
 class CreateLine extends Component {
 
@@ -26,9 +27,13 @@ class CreateLine extends Component {
     handleSubmit = (e) => {
         console.log(this.state);
         this.props.addLine(this.state);
+        this.props.history.push('/');
     }
 
     render() {
+
+        if (!this.props.signedIn) return <Redirect to='/signin' />
+
         let radios = this.colors.map(color => {
             let colorClass = 'color';
             if (this.state.color === color) {
@@ -55,10 +60,17 @@ class CreateLine extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+
+const mapStateToProps = (state, ownProps) => {
     return {
-        addLine: (line) => { dispatch(addLine(line)) }
+        signedIn: state.firebase.auth.uid ? true : false
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreateLine);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addLine: (line) => dispatch(addLine(line))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateLine);

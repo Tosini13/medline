@@ -1,32 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom'
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
+import LinesList from './Line/LinesList'
+import { Redirect } from "react-router-dom";
+
 
 class Home extends Component {
     render() {
-        let linesList = this.props.lines.map(line => {
-            return (
-
-                <Link to={'/' + line.id} key={line.id}>
-                    <div className='card' style={{ boxShadow: '0px 0px 5px ' + line.color }}>
-                        <h3 className='title' style={{ color: line.color }}>{line.title}</h3>
-                    </div>
-                </Link>
-            )
-        })
+        if (!this.props.signedIn) return <Redirect to='/signin' />
         return (
-            <div className='container'>
-                <h3>Your lines list:</h3>
-                {linesList}
-            </div>
+            <LinesList lines={this.props.lines} />
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        lines: state.lines
+        lines: state.firestore.ordered.lines,
+        signedIn: state.firebase.auth.uid ? true : false
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'lines' }
+    ])
+)(Home);
