@@ -54,7 +54,7 @@ class CreateLine extends Component {
                 <div className='chooseColor'>
                     {radios}
                 </div>
-                <div onClick={this.handleSubmit} >ADD LINE</div>
+                <div className='btn' onClick={this.handleSubmit} >ADD LINE</div>
             </form>
         );
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import '../../css/line.css';
-// import LineEvent from './LineEvent.js';
-// import CreateLineEvent from './CreateLineEvent.js';
+import LineEvent from './LineEvent.js';
+import CreateLineEvent from './CreateLineEvent.js';
 import { connect } from "react-redux";
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase';
@@ -11,18 +11,16 @@ const Line = (props) => {
 
     if (!props.signedIn) return <Redirect to='/signin' />
 
-    const { line } = props;
-
+    const { line, events } = props;
     if (line) {
         const style = {
             borderColor: line.color,
         }
-
-        // let events = line.events.map((event) => {
-        //     return (
-        //         <LineEvent key={event.id} event={event} mainColor={props.line.color} />
-        //     )
-        // });
+        let eventsLine = events.map((event) => {
+            return (
+                <LineEvent key={event.id} event={event} mainColor={props.line.color} />
+            )
+        });
 
         return (
             <div className='lineContainer'>
@@ -30,8 +28,8 @@ const Line = (props) => {
                 <div>
                     <div className='line' style={style}>
                     </div>
-                    {/* {events} */}
-                    {/* <CreateLineEvent iter={line.events.length} id={line.id} mainColor={line.color} /> */}
+                    {eventsLine}
+                    <CreateLineEvent id={props.id} mainColor={line.color} />
                 </div>
             </div>
         );
@@ -51,13 +49,18 @@ const mapStateToProps = (state, ownProps) => {
     let line = lines ? lines[id] : null;
     return {
         line,
-        signedIn: state.firebase.auth.uid ? true : false
+        id,
+        signedIn: state.firebase.auth.uid ? true : false,
+        events: state.firestore.ordered.events
     }
 }
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([
-        { collection: 'lines' }
-    ])
+    firestoreConnect((props) => { return [{ 
+        collection: 'lines',
+        doc: props.match.params.line_id,
+        subcollections: [{collection: 'events'}],
+        storeAs: 'events'
+    }] })
 )(Line);

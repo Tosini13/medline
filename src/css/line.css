@@ -1,3 +1,16 @@
+.btn {
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 12px;
+  margin: 20px auto;
+  background-color: gray;
+  color: white;
+  font-weight: 700;
+}
+
 .lineContainer .lineTitle {
   font-size: 40px;
   font-weight: 800;

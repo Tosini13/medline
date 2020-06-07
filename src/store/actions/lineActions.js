@@ -17,15 +17,15 @@ export const addLine = (line) => {
 }
 
 export const addEvent = (id, event) => {
-
+    console.log(id, event);
     return (dispatch, getState, { getFirebase, getFirestore }) => {
-        // const firestore = getFirestore();
-        // firestore.collection('events').add({
-            
-        // }).then(() => {
-        //     dispatch({ type: 'ADD_LINE', id, event });
-        // }).catch((err) => {
-        //     dispatch({ type: 'ADD_LINE_ERROR', err });
-        // })
+        const firestore = getFirestore();
+        firestore.collection('lines').doc(id).collection('events').add({
+            ...event
+        }).then(() => {
+            dispatch({ type: 'ADD_LINE', id, event });
+        }).catch((err) => {
+            dispatch({ type: 'ADD_LINE_ERROR', err });
+        })
     }
 }

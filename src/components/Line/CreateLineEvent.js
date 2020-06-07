@@ -6,7 +6,6 @@ class CreateLineEvent extends Component {
 
     addEvent = () => {
         let event = {
-            id: this.state.id,
             type: this.state.type,
             title: this.state.title,
             description: this.state.description
@@ -35,7 +34,6 @@ class CreateLineEvent extends Component {
     state = {
         state: 0,
         handle: this.createEvent,
-        id: this.props.iter,
         type: 'MA',
         title: '',
         description: ''
