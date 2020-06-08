@@ -11,12 +11,24 @@ $width: 40px;
     font-weight: 700;
 }
 
+.lineList {
+    .badge {
+        background-color: black;
+        width: 10px;
+        height: 100%;
+        position: absolute;
+        left: 0px;
+    }
+}
+
 .lineContainer {
+    color: grey;
     .lineTitle {
-        font-size: 40px;
-        font-weight: 800;
-        margin: 5px 0px;
+        font-size: 25px;
+        font-weight: 700;
+        margin: 15px 0px;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        text-transform: uppercase;
     }
     > div {
         position: relative;
@@ -44,8 +56,36 @@ $width: 40px;
                 border-radius: 50%;
                 background-color: white;
                 transition: box-shadow 0.3s, background-color 0.5s, color 0.5s;
-                &:hover {
-                    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
+            }
+            .dots {
+                display: flex;
+                flex-direction: column-reverse;
+                justify-content: flex-end;
+                align-items: center;
+                .dot {
+                    z-index: 2;
+                    &:hover {
+                        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
+                    }
+                    &.dot-edit,
+                    &.dot-remove {
+                        width: 0px;
+                        height: 0px;
+                        margin: 0px;
+                        font-size: 0px;
+                        transition-property: transform, width, height, margin, font-size;
+                        transition-duration: 0.5s;
+                        position: relative;
+                        z-index: 1;
+                    }
+                    &.dot-remove {
+                        transform: translate(0px, -30px - 5px);
+                        color: red;
+                    }
+                    &.dot-edit {
+                        transform: translate(0px, (-30px - 10px) * 2);
+                        color: blue;
+                    }
                 }
             }
             .content {
@@ -57,6 +97,7 @@ $width: 40px;
                 max-width: calc(100% - 55px);
                 transition-property: padding-bottom;
                 transition-duration: 0.3s;
+                height: fit-content;
                 &::before {
                     content: "";
                     position: absolute;
@@ -66,14 +107,24 @@ $width: 40px;
                     border: transparent solid 10px;
                     border-right: white solid 10px;
                 }
-                .title {
-                    font-weight: 700;
+                > p {
+                    margin: 0px;
                     text-align: left;
+                }
+                .date {
+                    width: fit-content;
+                    transition: width 0.5s;
+                    color: black;
+                }
+                .title {
                     font-size: 25px;
                     color: grey;
-                    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
                     cursor: pointer;
-                    text-align: center;
+                    transition: border 1s;
+                    border-color: transparent;
+                    font-size: 20px;
+                    width: fit-content;
+                    transition: width 0.5s;
                 }
                 .description {
                     color: black;
@@ -82,9 +133,31 @@ $width: 40px;
                     max-height: 0px;
                     transition-property: font-size, max-height;
                     transition-duration: 0.3s;
+                    margin-top: 5px;
                 }
-                &.opened {
+            }
+            &.opened {
+                .dots {
+                    .dot {
+                        &.dot-edit,
+                        &.dot-remove {
+                            font-size: 15px;
+                            width: 30px;
+                            height: 30px;
+                            margin-top: 5px;
+                            transform: translate(0px, 0%);
+                        }
+                    }
+                }
+                .content {
                     padding-bottom: 10px;
+                    .date {
+                        width: 100%;
+                    }
+                    .title {
+                        width: 100%;
+                        border-bottom: rgba(150, 150, 150, 0.7) solid 0.2px;
+                    }
                     .description {
                         font-size: 15px;
                         max-height: 100%;
@@ -92,8 +165,6 @@ $width: 40px;
                 }
             }
             &.event-create {
-                //CREATE DOT & X
-
                 .dot {
                     background-color: white;
                     color: $medicalGreen;
@@ -120,8 +191,7 @@ $width: 40px;
                 .content {
                     max-height: 100%;
                     transition: max-height 0.3s;
-                    // overflow: hidden;
-                    // display: block;
+                    padding: 5px 10px;
                     textarea {
                         border: none;
                         padding: 5px;

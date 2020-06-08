@@ -6,29 +6,29 @@ import { connect } from "react-redux";
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase';
 import { Redirect } from "react-router-dom";
+import { deleteEvent } from '../../store/actions/lineActions'
 
 const Line = (props) => {
 
     if (!props.signedIn) return <Redirect to='/signin' />
 
     const { line, events } = props;
-    if (line) {
+    if (line && events) {
         const style = {
             borderColor: line.color,
         }
-        let eventsLine = events.map((event) => {
-            return (
-                <LineEvent key={event.id} event={event} mainColor={props.line.color} />
-            )
-        });
 
         return (
             <div className='lineContainer'>
-                <h3 className='lineTitle' style={{ color: line.color }}>{line.title}</h3>
+                <p className='lineTitle'>{line.title}</p>
                 <div>
                     <div className='line' style={style}>
                     </div>
-                    {eventsLine}
+                    {events && events.map((event) => {
+                        return (
+                            <LineEvent key={event.id} id={props.id} event={event} mainColor={props.line.color} deleteEvent={props.deleteEvent} />
+                        )
+                    })}
                     <CreateLineEvent id={props.id} mainColor={line.color} />
                 </div>
             </div>
@@ -55,12 +55,20 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteEvent: (lineId, eventId) => { dispatch(deleteEvent(lineId, eventId)) }
+    }
+}
+
 export default compose(
-    connect(mapStateToProps),
-    firestoreConnect((props) => { return [{ 
-        collection: 'lines',
-        doc: props.match.params.line_id,
-        subcollections: [{collection: 'events'}],
-        storeAs: 'events'
-    }] })
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect((props) => {
+        return [{
+            collection: 'lines',
+            doc: props.match.params.line_id,
+            subcollections: [{ collection: 'events', orderBy: ['date', 'asc'] }],
+            storeAs: 'events'
+        }]
+    })
 )(Line);

@@ -41,16 +41,27 @@ const lineReducer = (state = initState, action) => {
     switch (action.type) {
         case 'ADD_LINE':
             console.log('line added');
-            // action.line.id = state.lines.length;
-            // action.line.events = [];
-            // let updatedLines = [...state.lines, action.line]
+            return state;
+        case 'ADD_LINE_ERROR':
+            console.log('line addition error');
             return state;
         case 'ADD_EVENT':
-            let line = state.lines.find(line => parseInt(action.id) === parseInt(line.id))
-            line.events = [...line.events, action.event];
-            return {
-                ...state
-            }
+            // let line = state.lines.find(line => parseInt(action.id) === parseInt(line.id))
+            // line.events = [...line.events, action.event];
+            // return {
+            //     ...state
+            // }
+            console.log('event added');
+            return state;
+        case 'ADD_EVENT_ERROR':
+            console.log('event addition error');
+            return state;
+            case 'DELETE_LINE':
+                console.log('line deleted');
+                return state;
+            case 'DELETE_LINE_ERROR':
+                console.log('line deletion error');
+                return state;
         default:
             return state;
     }

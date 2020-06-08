@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addEvent } from '../../store/actions/lineActions'
+// import DatePicker from 'react-datepicker'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class CreateLineEvent extends Component {
 
     addEvent = () => {
         let event = {
             type: this.state.type,
+            date: this.state.date,
             title: this.state.title,
-            description: this.state.description
+            description: this.state.description,
         };
         this.props.addEvent(this.props.id, event);
         this.setState({
@@ -31,9 +35,16 @@ class CreateLineEvent extends Component {
         })
     }
 
+    handleChangeDate = (date) => {
+        this.setState({
+            date
+        })
+    }
+
     state = {
         state: 0,
         handle: this.createEvent,
+        date: new Date(),
         type: 'MA',
         title: '',
         description: ''
@@ -50,13 +61,20 @@ class CreateLineEvent extends Component {
                     <div></div>
                     <div></div>
                 </div>
-                <form className='content'>
+                <form className='content content-form'>
                     <select id='type' onChange={this.handleChange}>
                         <option value="MA">Mediacal Appointment</option>
                         <option value="MT">Mediacal Test</option>
                         <option value="O">Occurance</option>
                         <option value="S">Surgery</option>
                     </select>
+                    <DatePicker id='date' className='center'
+                        selected={this.state.date}
+                        onChange={this.handleChangeDate}
+                        dateFormat="yyyy MMMM d"
+                        showYearDropdown
+                        showMonthDropdown
+                    />
                     <input id='title' placeholder='Title' onChange={this.handleChange} value={this.state.title} />
                     <textarea id='description' placeholder='Description' onChange={this.handleChange} value={this.state.description}></textarea>
                 </form>

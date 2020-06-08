@@ -7,10 +7,17 @@ import { Redirect } from "react-router-dom";
 
 
 class Home extends Component {
+
+    componentDidUpdate(){
+        const { lines, auth } = this.props;
+    }
+
     render() {
-        if (!this.props.signedIn) return <Redirect to='/signin' />
+        const { lines, auth } = this.props;
+        
+        if (!auth.uid) return <Redirect to='/signin' />
         return (
-            <LinesList lines={this.props.lines} />
+            <LinesList lines={lines} />
         )
     }
 }
@@ -18,7 +25,7 @@ class Home extends Component {
 const mapStateToProps = (state) => {
     return {
         lines: state.firestore.ordered.lines,
-        signedIn: state.firebase.auth.uid ? true : false
+        auth: state.firebase.auth
     }
 }
 
