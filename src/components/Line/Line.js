@@ -6,7 +6,9 @@ import { connect } from "react-redux";
 import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase';
 import { Redirect } from "react-router-dom";
-import { deleteEvent } from '../../store/actions/lineActions'
+import { deleteEvent, deleteLine } from '../../store/actions/lineActions'
+import EditLine from './EditLine'
+import LineDashboard from './LineDashboard'
 
 const Line = (props) => {
 
@@ -20,8 +22,8 @@ const Line = (props) => {
 
         return (
             <div className='lineContainer'>
-                <p className='lineTitle'>{line.title}</p>
-                <div>
+                <LineDashboard props={props} deleteLine={props.deleteLine} />
+                <div className='eventsContainer'>
                     <div className='line' style={style}>
                     </div>
                     {events && events.map((event) => {
@@ -57,7 +59,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteEvent: (lineId, eventId) => { dispatch(deleteEvent(lineId, eventId)) }
+        deleteEvent: (lineId, eventId) => { dispatch(deleteEvent(lineId, eventId)) },
+        deleteLine: (id) => { dispatch(deleteLine(id)) }
     }
 }
 

@@ -1,31 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addEvent } from '../../store/actions/lineActions'
+import { updateEvent } from '../../store/actions/lineActions'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-class CreateLineEvent extends Component {
+class EditLineEvent extends Component {
 
-    addEvent = () => {
+    updateEvent = () => {
         let event = {
             type: this.state.type,
             date: this.state.date,
             title: this.state.title,
             description: this.state.description,
         };
-        this.props.addEvent(this.props.id, event);
-        this.setState({
-            state: 0,
-            handle: this.createEvent,
-            id: this.props.iter,
-            type: 'MA',
-            title: '',
-            description: ''
-        })
-    }
-
-    createEvent = () => {
-        this.setState({ handle: this.addEvent, state: 1 });
+        this.props.updateEvent(this.props.id, this.state.id, event);
+        this.props.changeEditState();
     }
 
     handleChange = (e) => {
@@ -41,37 +30,31 @@ class CreateLineEvent extends Component {
     }
 
     handleCancel = () => {
-        this.setState({ handle: this.createEvent, state: 0 });
+        this.props.changeEditState();
     }
 
+
     state = {
-        state: 0,
         handle: this.createEvent,
-        date: new Date(),
-        type: 'MA',
-        title: '',
-        description: ''
+        ...this.props.event,
+        date: this.props.event.date.toDate()
     }
 
     render() {
-        let eventClass = 'event event-form ';
-        if (this.state.state === 0) {
-            eventClass += 'event-disabled';
-        }
         return (
-            <div className={eventClass}>
+            <div className='event event-form'>
                 <div className='dots'>
                     <div className='dot dot-cancel' onClick={this.handleCancel}>
                         <div></div>
                         <div></div>
                     </div>
-                    <div className='dot dot-create' onClick={this.state.handle}>
+                    <div className='dot dot-create dot-update' onClick={this.updateEvent}>
                         <div></div>
                         <div></div>
                     </div>
                 </div>
                 <form className='content content-form'>
-                    <select id='type' onChange={this.handleChange}>
+                    <select id='type' onChange={this.handleChange} value={this.state.type}>
                         <option value="MA">Mediacal Appointment</option>
                         <option value="MT">Mediacal Test</option>
                         <option value="O">Occurance</option>
@@ -94,8 +77,8 @@ class CreateLineEvent extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addEvent: (id, event) => { dispatch(addEvent(id, event)) }
+        updateEvent: (lineId, eventId, event) => { dispatch(updateEvent(lineId, eventId, event)) }
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreateLineEvent);
+export default connect(null, mapDispatchToProps)(EditLineEvent);

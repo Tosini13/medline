@@ -1,13 +1,5 @@
 .btn {
-  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
-          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  border-radius: 12px;
   margin: 20px auto;
-  background-color: gray;
-  color: white;
   font-weight: 700;
 }
 
@@ -17,6 +9,10 @@
   height: 100%;
   position: absolute;
   left: 0px;
+}
+
+.lineList .card-title {
+  text-transform: uppercase;
 }
 
 .lineContainer {
@@ -31,12 +27,24 @@
   text-transform: uppercase;
 }
 
-.lineContainer > div {
+.lineContainer > .lineDashboard > .btns-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.lineContainer > .lineDashboard > .btns-container > .btn {
+  margin: 0px;
+}
+
+.lineContainer > .eventsContainer {
   position: relative;
   margin: 10px;
 }
 
-.lineContainer > div .line {
+.lineContainer > .eventsContainer .line {
   z-index: -1;
   left: 18px;
   top: 1px;
@@ -47,14 +55,14 @@
           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-.lineContainer > div .event {
+.lineContainer > .eventsContainer .event {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin: 20px 0px;
 }
 
-.lineContainer > div .event .dot {
+.lineContainer > .eventsContainer .event .dot {
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -77,7 +85,7 @@
   transition: box-shadow 0.3s, background-color 0.5s, color 0.5s, -webkit-box-shadow 0.3s;
 }
 
-.lineContainer > div .event .dots {
+.lineContainer > .eventsContainer .event .dots {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -93,16 +101,16 @@
           align-items: center;
 }
 
-.lineContainer > div .event .dots .dot {
+.lineContainer > .eventsContainer .event .dots .dot {
   z-index: 2;
 }
 
-.lineContainer > div .event .dots .dot:hover {
+.lineContainer > .eventsContainer .event .dots .dot:hover {
   -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
           box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
 }
 
-.lineContainer > div .event .dots .dot.dot-edit, .lineContainer > div .event .dots .dot.dot-remove {
+.lineContainer > .eventsContainer .event .dots .dot.dot-edit, .lineContainer > .eventsContainer .event .dots .dot.dot-remove {
   width: 0px;
   height: 0px;
   margin: 0px;
@@ -117,19 +125,19 @@
   z-index: 1;
 }
 
-.lineContainer > div .event .dots .dot.dot-remove {
-  -webkit-transform: translate(0px, -35px);
-          transform: translate(0px, -35px);
+.lineContainer > .eventsContainer .event .dots .dot.dot-remove {
+  -webkit-transform: translate(0px, -30px);
+          transform: translate(0px, -30px);
   color: red;
 }
 
-.lineContainer > div .event .dots .dot.dot-edit {
-  -webkit-transform: translate(0px, -80px);
-          transform: translate(0px, -80px);
+.lineContainer > .eventsContainer .event .dots .dot.dot-edit {
+  -webkit-transform: translate(0px, -30px);
+          transform: translate(0px, -30px);
   color: blue;
 }
 
-.lineContainer > div .event .content {
+.lineContainer > .eventsContainer .event .content {
   padding: 0px 10px;
   background-color: white;
   border-radius: 5px;
@@ -147,7 +155,7 @@
   height: fit-content;
 }
 
-.lineContainer > div .event .content::before {
+.lineContainer > .eventsContainer .event .content::before {
   content: "";
   position: absolute;
   left: 0;
@@ -158,12 +166,12 @@
   border-right: white solid 10px;
 }
 
-.lineContainer > div .event .content > p {
+.lineContainer > .eventsContainer .event .content > p {
   margin: 0px;
   text-align: left;
 }
 
-.lineContainer > div .event .content .date {
+.lineContainer > .eventsContainer .event .content .date {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -172,7 +180,7 @@
   color: black;
 }
 
-.lineContainer > div .event .content .title {
+.lineContainer > .eventsContainer .event .content .title {
   font-size: 25px;
   color: grey;
   cursor: pointer;
@@ -187,7 +195,7 @@
   transition: width 0.5s;
 }
 
-.lineContainer > div .event .content .description {
+.lineContainer > .eventsContainer .event .content .description {
   color: black;
   text-align: justify;
   font-size: 0px;
@@ -199,7 +207,7 @@
   margin-top: 5px;
 }
 
-.lineContainer > div .event.opened .dots .dot.dot-edit, .lineContainer > div .event.opened .dots .dot.dot-remove {
+.lineContainer > .eventsContainer .event.opened .dots .dot.dot-edit, .lineContainer > .eventsContainer .event.opened .dots .dot.dot-remove {
   font-size: 15px;
   width: 30px;
   height: 30px;
@@ -208,25 +216,25 @@
           transform: translate(0px, 0%);
 }
 
-.lineContainer > div .event.opened .content {
+.lineContainer > .eventsContainer .event.opened .content {
   padding-bottom: 10px;
 }
 
-.lineContainer > div .event.opened .content .date {
+.lineContainer > .eventsContainer .event.opened .content .date {
   width: 100%;
 }
 
-.lineContainer > div .event.opened .content .title {
+.lineContainer > .eventsContainer .event.opened .content .title {
   width: 100%;
   border-bottom: rgba(150, 150, 150, 0.7) solid 0.2px;
 }
 
-.lineContainer > div .event.opened .content .description {
+.lineContainer > .eventsContainer .event.opened .content .description {
   font-size: 15px;
   max-height: 100%;
 }
 
-.lineContainer > div .event.event-create .dot {
+.lineContainer > .eventsContainer .event.event-form .dot {
   background-color: white;
   color: #019785;
   font-size: 40px;
@@ -237,7 +245,8 @@
           flex-direction: column;
 }
 
-.lineContainer > div .event.event-create .dot.dot-create > div {
+.lineContainer > .eventsContainer .event.event-form .dot.dot-create > div {
+  border-radius: 2px;
   background-color: #019785;
   height: 5px;
   width: 20px;
@@ -247,25 +256,57 @@
   transition: transform 0.3s, width 0.3s, -webkit-transform 0.3s;
 }
 
-.lineContainer > div .event.event-create .dot.dot-create > div:first-child {
-  -webkit-transform: translate(-60%, 2.5px) rotateZ(45deg);
-          transform: translate(-60%, 2.5px) rotateZ(45deg);
+.lineContainer > .eventsContainer .event.event-form .dot.dot-create > div:first-child {
+  -webkit-transform: translate(-60%, 4.5px) rotateZ(45deg);
+          transform: translate(-60%, 4.5px) rotateZ(45deg);
   width: 10px;
 }
 
-.lineContainer > div .event.event-create .dot.dot-create > div:last-child {
-  -webkit-transform: translate(20%, -2.5px) rotateZ(-45deg);
-          transform: translate(20%, -2.5px) rotateZ(-45deg);
+.lineContainer > .eventsContainer .event.event-form .dot.dot-create > div:last-child {
+  -webkit-transform: translate(20%, -2px) rotateZ(-45deg);
+          transform: translate(20%, -2px) rotateZ(-45deg);
 }
 
-.lineContainer > div .event.event-create .content {
+.lineContainer > .eventsContainer .event.event-form .dot.dot-update > div {
+  background-color: #052093;
+}
+
+.lineContainer > .eventsContainer .event.event-form .dot.dot-cancel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 5px;
+}
+
+.lineContainer > .eventsContainer .event.event-form .dot.dot-cancel > div {
+  border-radius: 2px;
+  background-color: red;
+  height: 5px;
+  width: 20px;
+  -webkit-transition: width 0.3s, -webkit-transform 0.3s;
+  transition: width 0.3s, -webkit-transform 0.3s;
+  transition: transform 0.3s, width 0.3s;
+  transition: transform 0.3s, width 0.3s, -webkit-transform 0.3s;
+}
+
+.lineContainer > .eventsContainer .event.event-form .dot.dot-cancel > div:first-child {
+  -webkit-transform: translate(0%, 2.5px) rotateZ(45deg);
+          transform: translate(0%, 2.5px) rotateZ(45deg);
+}
+
+.lineContainer > .eventsContainer .event.event-form .dot.dot-cancel > div:last-child {
+  -webkit-transform: translate(0%, -2.5px) rotateZ(-45deg);
+          transform: translate(0%, -2.5px) rotateZ(-45deg);
+}
+
+.lineContainer > .eventsContainer .event.event-form .content {
   max-height: 100%;
   -webkit-transition: max-height 0.3s;
   transition: max-height 0.3s;
   padding: 5px 10px;
 }
 
-.lineContainer > div .event.event-create .content textarea {
+.lineContainer > .eventsContainer .event.event-form .content textarea {
   border: none;
   padding: 5px;
   border-radius: 5px;
@@ -276,37 +317,45 @@
   resize: vertical;
 }
 
-.lineContainer > div .event.event-create .content textarea:active, .lineContainer > div .event.event-create .content textarea:focus {
+.lineContainer > .eventsContainer .event.event-form .content textarea:active, .lineContainer > .eventsContainer .event.event-form .content textarea:focus {
   border: #019785 solid 1.5px;
   outline: none;
 }
 
-.lineContainer > div .event.event-create .content select {
+.lineContainer > .eventsContainer .event.event-form .content select {
   display: block;
 }
 
-.lineContainer > div .event.event-create .content select:active, .lineContainer > div .event.event-create .content select:focus {
+.lineContainer > .eventsContainer .event.event-form .content select:active, .lineContainer > .eventsContainer .event.event-form .content select:focus {
   border: #019785 solid 1.5px;
   outline: none;
 }
 
-.lineContainer > div .event.event-create.event-disabled .dot.dot-create > div {
+.lineContainer > .eventsContainer .event.event-form.event-disabled .dot.dot-create > div {
   background-color: #019785;
   height: 5px;
   width: 20px;
 }
 
-.lineContainer > div .event.event-create.event-disabled .dot.dot-create > div:first-child {
+.lineContainer > .eventsContainer .event.event-form.event-disabled .dot.dot-create > div:first-child {
   -webkit-transform: translate(0%, 2.5px) rotateZ(0deg);
           transform: translate(0%, 2.5px) rotateZ(0deg);
 }
 
-.lineContainer > div .event.event-create.event-disabled .dot.dot-create > div:last-child {
+.lineContainer > .eventsContainer .event.event-form.event-disabled .dot.dot-create > div:last-child {
   -webkit-transform: translate(0%, -2.5px) rotateZ(-90deg);
           transform: translate(0%, -2.5px) rotateZ(-90deg);
 }
 
-.lineContainer > div .event.event-create.event-disabled .content {
+.lineContainer > .eventsContainer .event.event-form.event-disabled .dot.dot-update > div {
+  background-color: #052093;
+}
+
+.lineContainer > .eventsContainer .event.event-form.event-disabled .dot.dot-cancel {
+  display: none;
+}
+
+.lineContainer > .eventsContainer .event.event-form.event-disabled .content {
   display: none;
   max-height: 0px;
 }

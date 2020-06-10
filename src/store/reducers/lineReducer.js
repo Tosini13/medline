@@ -45,23 +45,36 @@ const lineReducer = (state = initState, action) => {
         case 'ADD_LINE_ERROR':
             console.log('line addition error');
             return state;
+        case 'DELETE_LINE':
+            console.log('line deleted');
+            return state;
+        case 'DELETE_LINE_ERROR':
+            console.log('line deletion error');
+            return state;
+        case 'UPDATE_LINE':
+            console.log('line updated');
+            return state;
+        case 'UPDATE_LINE_ERROR':
+            console.log('line update error');
+            return state;
         case 'ADD_EVENT':
-            // let line = state.lines.find(line => parseInt(action.id) === parseInt(line.id))
-            // line.events = [...line.events, action.event];
-            // return {
-            //     ...state
-            // }
             console.log('event added');
             return state;
         case 'ADD_EVENT_ERROR':
             console.log('event addition error');
             return state;
-            case 'DELETE_LINE':
-                console.log('line deleted');
-                return state;
-            case 'DELETE_LINE_ERROR':
-                console.log('line deletion error');
-                return state;
+        case 'DELETE_EVENT':
+            console.log('event deleted');
+            return state;
+        case 'DELETE_EVENT_ERROR':
+            console.log('event deletion error');
+            return state;
+        case 'UPDATE_EVENT':
+            console.log('line updated');
+            return state;
+        case 'UPDATE_EVENT_ERROR':
+            console.log('line update error', action.err);
+            return state;
         default:
             return state;
     }

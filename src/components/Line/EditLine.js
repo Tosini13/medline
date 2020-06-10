@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addLine } from '../../store/actions/lineActions'
+import { updateLine } from '../../store/actions/lineActions'
 import { Redirect } from "react-router-dom";
 
-class CreateLine extends Component {
+class EditLine extends Component {
 
     colors = ['black', '#c4c4c4', '#d1c624', '#001a8f', '#068f09', '#ad0707', '#0abbc4'];
 
     state = {
-        title: '',
-        color: ''
+        title: this.props.line.title,
+        color: this.props.line.color
     }
 
     handleChange = (e) => {
@@ -25,12 +25,11 @@ class CreateLine extends Component {
     }
 
     handleSubmit = (e) => {
-        this.props.addLine(this.state);
+        this.props.updateLine(this.props.id, this.state);
         this.props.history.push('/');
     }
 
     render() {
-
         if (!this.props.signedIn) return <Redirect to='/signin' />
 
         let radios = this.colors.map(color => {
@@ -53,7 +52,7 @@ class CreateLine extends Component {
                 <div className='chooseColor'>
                     {radios}
                 </div>
-                <div className='btn' onClick={this.handleSubmit} >ADD LINE</div>
+                <div className='btn' onClick={this.handleSubmit} >UPDATE LINE</div>
             </form>
         );
     }
@@ -68,8 +67,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addLine: (line) => dispatch(addLine(line))
+        updateLine: (id, line) => dispatch(updateLine(id, line))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateLine);
+export default connect(mapStateToProps, mapDispatchToProps)(EditLine);

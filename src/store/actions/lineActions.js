@@ -1,5 +1,4 @@
 export const addLine = (line) => {
-    console.log(line);
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
 
@@ -16,8 +15,32 @@ export const addLine = (line) => {
     }
 }
 
+export const deleteLine = (id) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firestore = getFirestore();
+        firestore.collection('lines').doc(id).delete()
+            .then(() => {
+                dispatch({ type: 'DELETE_LINE' });
+            }).catch((err) => {
+                dispatch({ type: 'DELETE_LINE_ERROR', err });
+            })
+    }
+}
+
+export const updateLine = (id, line) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firestore = getFirestore();
+        firestore.collection('lines').doc(id).update({
+            ...line
+        }).then(() => {
+            dispatch({ type: 'UPDATE_LINE', line });
+        }).catch((err) => {
+            dispatch({ type: 'UPDATE_LINE_ERROR', err });
+        })
+    }
+}
+
 export const addEvent = (id, event) => {
-    console.log(event);
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
         firestore.collection('lines').doc(id).collection('events').add({
@@ -39,5 +62,22 @@ export const deleteEvent = (lineId, eventId) => {
             }).catch((err) => {
                 dispatch({ type: 'DELETE_EVENT_ERROR', err });
             })
+    }
+}
+
+export const updateEvent = (lineId, eventId, event) => {
+    console.log('update action');
+    console.log(lineId, eventId, event);
+    return (dispatch, getState, { getFirestore }) => {
+        const firestore = getFirestore();
+        firestore.collection('lines').doc(lineId).collection('events').doc(eventId).update({
+            ...event
+        })
+            .then(() => {
+                dispatch({ type: 'UPDATE_EVENT', lineId, eventId, event });
+            }).catch((err) => {
+                dispatch({ type: 'UPDATE_EVENT_ERROR', err });
+            })
+
     }
 }
