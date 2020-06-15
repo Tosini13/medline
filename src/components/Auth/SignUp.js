@@ -6,7 +6,9 @@ import { Redirect } from "react-router-dom";
 class SignUp extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
+        firstName: '',
+        lastName: ''
     }
 
     handleChange = (e) => {
@@ -17,6 +19,7 @@ class SignUp extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log(this.state);
         this.props.signUp(this.state);
     }
 

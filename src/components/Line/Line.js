@@ -7,8 +7,8 @@ import { compose } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase';
 import { Redirect } from "react-router-dom";
 import { deleteEvent, deleteLine } from '../../store/actions/lineActions'
-import EditLine from './EditLine'
 import LineDashboard from './LineDashboard'
+import SplashScreen from "../Extra/SplashScreen";
 
 const Line = (props) => {
 
@@ -21,7 +21,7 @@ const Line = (props) => {
         }
 
         return (
-            <div className='lineContainer'>
+            <div className='lineContainer container'>
                 <LineDashboard props={props} deleteLine={props.deleteLine} />
                 <div className='eventsContainer'>
                     <div className='line' style={style}>
@@ -37,9 +37,7 @@ const Line = (props) => {
         );
     } else {
         return (
-            <div className='lineContainer'>
-                <p>Loading line...</p>
-            </div>
+            <SplashScreen />
         )
     }
 

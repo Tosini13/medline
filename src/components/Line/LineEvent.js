@@ -69,7 +69,7 @@ class LineEvent extends Component {
                             <i className={eventIcon} style={{ color: eventIconColor }}></i>
                         </div>
                     </div>
-                    <div className='content'>
+                    <div className='content card'>
                         <p className='date'>{moment(this.props.event.date.toDate()).format('yyyy MMMM DD')}</p>
                         <p className='title'>{this.props.event.title}</p>
                         <p className='description'>{this.props.event.description}</p>

@@ -1,25 +1,103 @@
 @import "_constants.scss";
 $width: 40px;
 
+.App {
+    padding-top: 80px;
+    nav {
+        position: fixed;
+        top: 0;
+        z-index: 3;
+    }
+}
+
 .btn {
-    // box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
-    // width: fit-content;
     margin: 20px auto;
-    // background-color: gray;
-    // color: white;
+    background-color: white;
+    color: gray;
+    cursor: pointer;
     font-weight: 700;
+    padding: 7px 15px;
+    border: none;
+    border-radius: 3px;
+    width: fit-content;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+label {
+    color: grey;
+}
+
+input {
+    border: none;
+    border-bottom: rgba(0, 0, 0, 0.5) solid 1px;
+    color: $grey;
+    padding: 5px;
+    margin: 10px 5px;
+    transition: border-color 0.2s;
+    &:focus {
+        outline: none;
+        border-color: $medicalGreen;
+    }
+}
+
+nav {
+    width: 100vw;
+    height: fit-content;
+    padding: 15px 0px;
+    background-color: $medicalGreen;
+    box-sizing: border-box;
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        > li {
+            padding: 4px;
+            border-bottom: rgba(255, 255, 255, 0.7) solid 1px;
+            transition: border-color 0.3s;
+            cursor: pointer;
+            > a {
+                color: white;
+                transition: color 0.3s;
+            }
+        }
+        > li > a.active {
+            color: black;
+        }
+    }
 }
 
 .lineList {
-    .badge {
-        background-color: black;
-        width: 10px;
-        height: 100%;
-        position: absolute;
-        left: 0px;
-    }
-    .card-title {
-        text-transform: uppercase;
+    .lineCard {
+        position: relative;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        .badge {
+            background-color: black;
+            width: 10px;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+        }
+        .card-title {
+            text-transform: uppercase;
+            text-decoration: none;
+            color: black;
+        }
     }
 }
 
@@ -75,9 +153,6 @@ $width: 40px;
                 align-items: center;
                 .dot {
                     z-index: 2;
-                    &:hover {
-                        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
-                    }
                     &.dot-edit,
                     &.dot-remove {
                         width: 0px;
@@ -98,17 +173,25 @@ $width: 40px;
                         color: blue;
                     }
                 }
+                &:focus,
+                &:active {
+                    outline: none;
+                    background: none;
+                }
             }
             .content {
+                $bgColor: rgb(240, 240, 240);
                 padding: 0px 10px;
-                background-color: white;
+                background-color: $bgColor;
                 border-radius: 5px;
-                box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.7);
-                transform: translate(15px, 8px);
+                transform: translate(15px, 3px);
                 max-width: calc(100% - 55px);
+                box-sizing: border-box;
                 transition-property: padding-bottom;
                 transition-duration: 0.3s;
                 height: fit-content;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.2);
                 &::before {
                     content: "";
                     position: absolute;
@@ -116,7 +199,7 @@ $width: 40px;
                     top: 3px;
                     transform: translateX(-90%);
                     border: transparent solid 10px;
-                    border-right: white solid 10px;
+                    border-right: $bgColor solid 10px;
                 }
                 > p {
                     margin: 0px;
@@ -177,6 +260,9 @@ $width: 40px;
             }
             // &.event-update,
             &.event-form {
+                select {
+                    border: none;
+                }
                 .dot {
                     background-color: white;
                     color: $medicalGreen;
@@ -228,13 +314,26 @@ $width: 40px;
                     max-height: 100%;
                     transition: max-height 0.3s;
                     padding: 5px 10px;
+                    display: flex;
+                    flex-direction: column;
+                    select,
+                    textarea,
+                    input {
+                        border-width: 1.5px;
+                        padding: 5px;
+                        margin-top: 5px;
+                        background-color: transparent;
+                    }
+                    input:focus {
+                        outline: none;
+                        border-color: $medicalGreen;
+                    }
                     textarea {
                         border: none;
                         padding: 5px;
                         border-radius: 5px;
                         border: rgba(0, 0, 0, 0.3) solid 1.5px;
                         transition: border 0.3s;
-                        width: 100%;
                         resize: vertical;
 
                         &:active,
@@ -247,7 +346,6 @@ $width: 40px;
                         display: block;
                         &:active,
                         &:focus {
-                            border: $medicalGreen solid 1.5px;
                             outline: none;
                         }
                     }
@@ -287,16 +385,31 @@ $width: 40px;
     }
 }
 
-.createLine {
+.lineForm {
+    label {
+        color: grey;
+        display: block;
+        font-size: 15px;
+    }
+    input {
+        font-size: 20px;
+    }
     .chooseColor {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
+        min-height: 30px;
+        align-items: center;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
         .color {
+            cursor: pointer;
             width: 30px;
             height: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
+                0 1px 5px 0 rgba(0, 0, 0, 0.2);
             margin: 2px;
             transition-property: width, height;
             transition-duration: 0.3s;
@@ -304,6 +417,43 @@ $width: 40px;
                 width: 40px;
                 height: 25px;
             }
+        }
+    }
+}
+
+form {
+    .input-field {
+        display: flex;
+        flex-direction: column;
+        > input {
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+}
+
+@media (min-width: 860px) {
+    .App > .container {
+        max-width: 860px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn:hover {
+        background-color: $medicalGreen;
+        color: white;
+    }
+
+    .dot:hover {
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    nav > ul {
+        max-width: 330px;
+        margin-left: auto;
+        margin-right: 50px;
+        > li:hover {
+            border-color: rgba(0, 0, 0, 0.7);
         }
     }
 }

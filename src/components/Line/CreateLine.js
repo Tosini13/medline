@@ -25,6 +25,7 @@ class CreateLine extends Component {
     }
 
     handleSubmit = (e) => {
+        e.preventDefault();
         this.props.addLine(this.state);
         this.props.history.push('/');
     }
@@ -47,7 +48,7 @@ class CreateLine extends Component {
         })
 
         return (
-            <form className='container createLine'>
+            <form className='container lineForm'>
                 <label>Title</label>
                 <input name='title' onChange={this.handleChange} value={this.state.title} />
                 <div className='chooseColor'>

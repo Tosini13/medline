@@ -8,13 +8,13 @@ import { Redirect } from "react-router-dom";
 
 class Home extends Component {
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         const { lines, auth } = this.props;
     }
 
     render() {
         const { lines, auth } = this.props;
-        
+
         if (!auth.uid) return <Redirect to='/signin' />
         return (
             <LinesList lines={lines} />
@@ -31,7 +31,14 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([
-        { collection: 'lines' }
-    ])
+    firestoreConnect(props => {
+        if (!props.auth.uid) return []
+        console.log(props);
+        return [
+            {
+                collection: 'lines',
+                where: [['ownerId', '==', props.auth.uid]]
+            }
+        ]
+    })
 )(Home);

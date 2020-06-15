@@ -1,9 +1,119 @@
-.btn {
-  margin: 20px auto;
-  font-weight: 700;
+.App {
+  padding-top: 80px;
 }
 
-.lineList .badge {
+.App nav {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+}
+
+.btn {
+  margin: 20px auto;
+  background-color: white;
+  color: gray;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 7px 15px;
+  border: none;
+  border-radius: 3px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  -webkit-transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+label {
+  color: grey;
+}
+
+input {
+  border: none;
+  border-bottom: rgba(0, 0, 0, 0.5) solid 1px;
+  color: #424242;
+  padding: 5px;
+  margin: 10px 5px;
+  -webkit-transition: border-color 0.2s;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #019785;
+}
+
+nav {
+  width: 100vw;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 15px 0px;
+  background-color: #019785;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+nav ul > li {
+  padding: 4px;
+  border-bottom: rgba(255, 255, 255, 0.7) solid 1px;
+  -webkit-transition: border-color 0.3s;
+  transition: border-color 0.3s;
+  cursor: pointer;
+}
+
+nav ul > li > a {
+  color: white;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+nav ul > li > a.active {
+  color: black;
+}
+
+.lineList .lineCard {
+  position: relative;
+  margin: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.lineList .lineCard .badge {
   background-color: black;
   width: 10px;
   height: 100%;
@@ -11,8 +121,10 @@
   left: 0px;
 }
 
-.lineList .card-title {
+.lineList .lineCard .card-title {
   text-transform: uppercase;
+  text-decoration: none;
+  color: black;
 }
 
 .lineContainer {
@@ -105,11 +217,6 @@
   z-index: 2;
 }
 
-.lineContainer > .eventsContainer .event .dots .dot:hover {
-  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
-          box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
-}
-
 .lineContainer > .eventsContainer .event .dots .dot.dot-edit, .lineContainer > .eventsContainer .event .dots .dot.dot-remove {
   width: 0px;
   height: 0px;
@@ -137,15 +244,20 @@
   color: blue;
 }
 
+.lineContainer > .eventsContainer .event .dots:focus, .lineContainer > .eventsContainer .event .dots:active {
+  outline: none;
+  background: none;
+}
+
 .lineContainer > .eventsContainer .event .content {
   padding: 0px 10px;
-  background-color: white;
+  background-color: #f0f0f0;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.7);
-          box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.7);
-  -webkit-transform: translate(15px, 8px);
-          transform: translate(15px, 8px);
+  -webkit-transform: translate(15px, 3px);
+          transform: translate(15px, 3px);
   max-width: calc(100% - 55px);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   -webkit-transition-property: padding-bottom;
   transition-property: padding-bottom;
   -webkit-transition-duration: 0.3s;
@@ -153,6 +265,8 @@
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .lineContainer > .eventsContainer .event .content::before {
@@ -163,7 +277,7 @@
   -webkit-transform: translateX(-90%);
           transform: translateX(-90%);
   border: transparent solid 10px;
-  border-right: white solid 10px;
+  border-right: #f0f0f0 solid 10px;
 }
 
 .lineContainer > .eventsContainer .event .content > p {
@@ -232,6 +346,10 @@
 .lineContainer > .eventsContainer .event.opened .content .description {
   font-size: 15px;
   max-height: 100%;
+}
+
+.lineContainer > .eventsContainer .event.event-form select {
+  border: none;
 }
 
 .lineContainer > .eventsContainer .event.event-form .dot {
@@ -304,6 +422,27 @@
   -webkit-transition: max-height 0.3s;
   transition: max-height 0.3s;
   padding: 5px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.lineContainer > .eventsContainer .event.event-form .content select,
+.lineContainer > .eventsContainer .event.event-form .content textarea,
+.lineContainer > .eventsContainer .event.event-form .content input {
+  border-width: 1.5px;
+  padding: 5px;
+  margin-top: 5px;
+  background-color: transparent;
+}
+
+.lineContainer > .eventsContainer .event.event-form .content input:focus {
+  outline: none;
+  border-color: #019785;
 }
 
 .lineContainer > .eventsContainer .event.event-form .content textarea {
@@ -313,7 +452,6 @@
   border: rgba(0, 0, 0, 0.3) solid 1.5px;
   -webkit-transition: border 0.3s;
   transition: border 0.3s;
-  width: 100%;
   resize: vertical;
 }
 
@@ -327,7 +465,6 @@
 }
 
 .lineContainer > .eventsContainer .event.event-form .content select:active, .lineContainer > .eventsContainer .event.event-form .content select:focus {
-  border: #019785 solid 1.5px;
   outline: none;
 }
 
@@ -360,7 +497,17 @@
   max-height: 0px;
 }
 
-.createLine .chooseColor {
+.lineForm label {
+  color: grey;
+  display: block;
+  font-size: 15px;
+}
+
+.lineForm input {
+  font-size: 20px;
+}
+
+.lineForm .chooseColor {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -368,14 +515,22 @@
       flex-wrap: wrap;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  min-height: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.createLine .chooseColor .color {
+.lineForm .chooseColor .color {
+  cursor: pointer;
   width: 30px;
   height: 20px;
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   margin: 2px;
   -webkit-transition-property: width, height;
   transition-property: width, height;
@@ -383,8 +538,47 @@
           transition-duration: 0.3s;
 }
 
-.createLine .chooseColor .color.chosen {
+.lineForm .chooseColor .color.chosen {
   width: 40px;
   height: 25px;
+}
+
+form .input-field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+form .input-field > input {
+  font-size: 20px;
+  text-align: center;
+}
+
+@media (min-width: 860px) {
+  .App > .container {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn:hover {
+    background-color: #019785;
+    color: white;
+  }
+  .dot:hover {
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7) !important;
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.7) !important;
+  }
+  nav > ul {
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: 50px;
+  }
+  nav > ul > li:hover {
+    border-color: rgba(0, 0, 0, 0.7);
+  }
 }
 /*# sourceMappingURL=line.css.map */

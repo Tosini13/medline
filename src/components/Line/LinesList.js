@@ -10,7 +10,7 @@ const LinesList = ({ lines }) => {
                 {lines && lines.map(line => {
                     return (
                         <Link to={'/line/' + line.id} key={line.id}>
-                            <div className='card z-depth-1'>
+                            <div className='lineCard'>
                                 <div className='badge' style={{ backgroundColor: line.color }}></div>
                                 <p className='card-title grey-text'>{line.title}</p>
                             </div>

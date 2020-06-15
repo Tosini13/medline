@@ -80,12 +80,12 @@ class CreateLineEvent extends Component {
                     <DatePicker id='date' className='center'
                         selected={this.state.date}
                         onChange={this.handleChangeDate}
-                        dateFormat="yyyy MMMM d"
+                        dateFormat="yyyy MMMM dd"
                         showYearDropdown
                         showMonthDropdown
                     />
                     <input id='title' placeholder='Title' onChange={this.handleChange} value={this.state.title} />
-                    <textarea id='description' placeholder='Description' onChange={this.handleChange} value={this.state.description}></textarea>
+                    <textarea id='description' placeholder='Description' rows={'3'} onChange={this.handleChange} value={this.state.description}></textarea>
                 </form>
             </div>
         )

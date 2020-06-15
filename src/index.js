@@ -11,6 +11,8 @@ import { getFirestore, reduxFirestore, createFirestoreInstance } from 'redux-fir
 import { getFirebase, ReactReduxFirebaseProvider, isLoaded } from 'react-redux-firebase'
 import fbConfig from './config/fbConfig'
 import firebase from 'firebase/app'
+import SplashScreen from './components/Extra/SplashScreen';
+
 
 const store = createStore(
   rootReducer,
@@ -25,9 +27,9 @@ const store = createStore(
 //   console.log(store.getState());
 // });
 
-function AuthIsLoaded({ children }){
+function AuthIsLoaded({ children }) {
   const auth = useSelector(state => state.firebase.auth)
-  if (!isLoaded(auth)) return <div>Splash screen</div>
+  if (!isLoaded(auth)) return <SplashScreen />
   return children
 }
 
@@ -39,7 +41,7 @@ const rrfProps = {
 };
 
 ReactDOM.render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <ReactReduxFirebaseProvider {...rrfProps}>
       <Provider store={store}>
         <AuthIsLoaded>
@@ -47,7 +49,7 @@ ReactDOM.render(
         </AuthIsLoaded>
       </Provider>
     </ReactReduxFirebaseProvider>
-  // </React.StrictMode>
+  </React.StrictMode>
   ,
   document.getElementById('root')
 );

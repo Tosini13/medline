@@ -68,7 +68,7 @@ class EditLineEvent extends Component {
                         showMonthDropdown
                     />
                     <input id='title' placeholder='Title' onChange={this.handleChange} value={this.state.title} />
-                    <textarea id='description' placeholder='Description' onChange={this.handleChange} value={this.state.description}></textarea>
+                    <textarea id='description' placeholder='Description' rows={'5'} onChange={this.handleChange} value={this.state.description}></textarea>
                 </form>
             </div>
         )

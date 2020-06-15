@@ -7,9 +7,7 @@ class Navbar extends Component {
     render() {
         return (
             <nav className='nav-wrapper grey darken-3'>
-                <div className='container'>
-                    {this.props.loggedIn ? <LoggedInLinks /> : <LoggedOutLinks />}
-                </div>
+                {this.props.loggedIn ? <LoggedInLinks /> : <LoggedOutLinks />}
             </nav>
         )
     }
