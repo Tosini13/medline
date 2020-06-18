@@ -2,15 +2,39 @@ import React, { Component } from "react";
 import '../../css/fontello/css/fontello.css'
 import moment from 'moment'
 import EditLineEvent from './EditLineEvent'
+import Question from "../Extra/Question";
+
+
 
 class LineEvent extends Component {
     state = {
         opened: false,
-        edit: false
+        edit: false,
+        delete: false,
+        question: null
     }
 
+
     handleDelete = () => {
-        this.props.deleteEvent(this.props.id, this.props.event.id);
+        this.setState({
+            delete: !this.state.delete,
+            question: {
+                question: 'Do you want to delete event?',
+                answer1: {
+                    answer: 'Yes',
+                    feedback: () => {
+                        this.props.deleteEvent(this.props.id, this.props.event.id);
+                        this.setState({ delete: !this.state.delete });
+                    }
+                },
+                answer2: {
+                    answer: 'No',
+                    feedback: () => {
+                        this.setState({ delete: !this.state.delete });
+                    }
+                }
+            }
+        });
     }
 
     handleEdit = () => {
@@ -74,6 +98,7 @@ class LineEvent extends Component {
                         <p className='title'>{this.props.event.title}</p>
                         <p className='description'>{this.props.event.description}</p>
                     </div>
+                    {this.state.delete ? <Question question={this.state.question} /> : null}
                 </div >
             )
         } else {

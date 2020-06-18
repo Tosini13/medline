@@ -8,7 +8,7 @@ const LoggedInLinks = (props) => {
         <ul className='right'>
             <li> <NavLink exact to={'/'}>Home</NavLink></li>
             <li> <NavLink to={'/create'}>Create Line</NavLink></li>
-            <li> <a onClick={props.signOut}>Log out</a></li>
+            <li> <a href='#logout' onClick={props.signOut}>Log out</a></li>
         </ul>
     )
 }

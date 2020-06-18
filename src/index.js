@@ -41,7 +41,7 @@ const rrfProps = {
 };
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ReactReduxFirebaseProvider {...rrfProps}>
       <Provider store={store}>
         <AuthIsLoaded>
@@ -49,7 +49,7 @@ ReactDOM.render(
         </AuthIsLoaded>
       </Provider>
     </ReactReduxFirebaseProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
   ,
   document.getElementById('root')
 );

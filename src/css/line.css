@@ -1,3 +1,7 @@
+body {
+  font-family: "Varela Round", "Consolas", Times, serif;
+}
+
 .App {
   padding-top: 80px;
 }
@@ -137,6 +141,7 @@ nav ul > li > a.active {
   margin: 15px 0px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
+  letter-spacing: 3px;
 }
 
 .lineContainer > .lineDashboard > .btns-container {
@@ -307,6 +312,7 @@ nav ul > li > a.active {
   width: fit-content;
   -webkit-transition: width 0.5s;
   transition: width 0.5s;
+  padding: 3px 0px;
 }
 
 .lineContainer > .eventsContainer .event .content .description {
@@ -319,6 +325,7 @@ nav ul > li > a.active {
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
   margin-top: 5px;
+  font-family: "Old Standard TT", "Times New Roman", Times, serif;
 }
 
 .lineContainer > .eventsContainer .event.opened .dots .dot.dot-edit, .lineContainer > .eventsContainer .event.opened .dots .dot.dot-remove {

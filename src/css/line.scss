@@ -1,6 +1,10 @@
 @import "_constants.scss";
 $width: 40px;
 
+body {
+    font-family: $firstFont;
+}
+
 .App {
     padding-top: 80px;
     nav {
@@ -109,6 +113,7 @@ nav {
         margin: 15px 0px;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
         text-transform: uppercase;
+        letter-spacing: 3px;
     }
     > .lineDashboard {
         > .btns-container {
@@ -219,6 +224,7 @@ nav {
                     font-size: 20px;
                     width: fit-content;
                     transition: width 0.5s;
+                    padding: 3px 0px;
                 }
                 .description {
                     color: black;
@@ -228,6 +234,7 @@ nav {
                     transition-property: font-size, max-height;
                     transition-duration: 0.3s;
                     margin-top: 5px;
+                    font-family: $secondFont;
                 }
             }
             &.opened {

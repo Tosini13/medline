@@ -17,15 +17,11 @@ const SplashScreen = (props) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // border: 'grey dashed 2px',
-        // boxShadow: '0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2)',
         padding: '15px 20px',
         backgroundColor: 'white',
-        // backgroundColor: '#019785',
     }
     const styleTrace = {
-        height: '100%',
-        width: '10px',
+        display: 'block',
         height: '100%',
         width: '10px',
         borderLeft: 'red dashed 3px',
@@ -35,7 +31,6 @@ const SplashScreen = (props) => {
     }
     const styleText = {
         display: 'block',
-        color: 'white',
         color: '#019785',
         margin: '0',
     }
@@ -44,7 +39,7 @@ const SplashScreen = (props) => {
             <div style={styleContainer}>
                 <p style={styleText}>
                     MedL<span style={{ color: '#ad0707', margin: '0px 5px' }}></span>ne
-                    <div style={styleTrace}></div>
+                    <span style={styleTrace}></span>
                 </p>
             </div>
         </div>
